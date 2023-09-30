@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -name "*.html" -type f -newer ../ -exec sh -c 'if [ ! -e "$(dirname "$1")/../$(basename "$1")" ] || [ "$1" -nt "$(dirname "$1")/../$(basename "$1")" ]; then cp "$1" "$(dirname "$1")/../"; fi' _ {} \;
+find . -maxdepth 1 -type f -name "*.html" | xargs -I {} rsync -u {} ../
