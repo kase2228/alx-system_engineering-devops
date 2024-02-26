@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 # Fizzbuzz
 
-
 n=1
+
 while [ "$n" -le 100 ]; do
-  if [[ $(expr $n % 3) -eq 0 ]] && [[ $(expr $n % 5) -eq 0 ]]; then
+
+
+  if ! (( n % 3 )) && ! (( n % 5 )); then
     echo "FizzBuzz"
-  elif [[ $(expr $n % 3) -eq 0 ]]; then
+  elif ! (( n % 3 )); then
     echo "Fizz"
-  elif [[ $(expr $n % 5) -eq 0 ]]; then
+  elif ! (( n % 5 )); then
     echo "Buzz"
   else
     echo "$n"
   fi
+  
   ((n++))
 done
