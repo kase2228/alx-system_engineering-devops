@@ -1,1 +1,1 @@
-Ruby scripts that matches based on the given criteria
+Ruby scripts that matche based on the given criteria
