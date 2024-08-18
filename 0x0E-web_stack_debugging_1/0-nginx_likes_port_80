@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 #The script explictly sets nginx listen on port 80 and then restart it to ensure the new configuration is active
 
-cat <<EOL > /etc/nginx/sites-available/default
+apt-get update
+
+apt-get install -y nginx
+
+
+sudo bash -c 'cat <<EOL > /etc/nginx/sites-available/default
 server {
     listen 80 default_server;
     listen [::]:80 default_server;
@@ -15,7 +20,7 @@ server {
         try_files \$uri \$uri/ =404;
     }
 }
-EOL
+EOL'
 
 # Restart Nginx to apply the configuration
 service nginx restart
