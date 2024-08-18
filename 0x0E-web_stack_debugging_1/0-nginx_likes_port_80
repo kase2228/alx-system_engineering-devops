@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
-# Update and install nginx, configure, and restart
+# Update package list, install nginx, configure it, and restart the service
 
 apt-get update -y && apt-get install -y nginx
 
-echo 'server {
+cat <<EOL > /etc/nginx/sites-available/default
+server {
     listen 80 default_server;
     listen [::]:80 default_server;
+
     root /var/www/html;
     index index.html index.htm index.nginx-debian.html;
+
     server_name _;
+
     location / {
-        try_files $uri $uri/ =404;
+        try_files \$uri \$uri/ =404;
     }
-}' > /etc/nginx/sites-available/default
+}
+EOL
 
 service nginx restart
