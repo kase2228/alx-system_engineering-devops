@@ -1,22 +1,7 @@
-#!/usr/bin/env bash
-# Update package list, install nginx, configure it, and restart the service
+#!/usr/bin/env bash                         
+# fix the issue of ngunx listening on port 80
 
-apt-get update -y && apt-get install -y nginx
-
-cat <<EOL > /etc/nginx/sites-available/default
-server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
-
-    server_name _;
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-}
-EOL
-
+cd /etc/nginx/sites-enabled/ || exit;                                                                                                                
+rm default;                                                                                                                                               
+ln -s /etc/nginx/sites-available/default default;                                                                              
 service nginx restart
