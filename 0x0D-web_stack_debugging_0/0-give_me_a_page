@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#The script runs the apache2 server so that curl 0:8080 will respond the intended message.
+sudo service apache2 start
