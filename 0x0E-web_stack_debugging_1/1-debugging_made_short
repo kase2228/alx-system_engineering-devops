@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
-apt-get update -y
-apt-get install -y nginx
-echo 'server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
-    server_name _;
-    location / { try_files $uri $uri/ =404; }
-}' > /etc/nginx/sites-available/default
-service nginx start
+#Sets nginx for listening to 80 port
+sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
+sudo service nginx restart
+kill -9 "$(cat /var/run/nginx.pid)"
